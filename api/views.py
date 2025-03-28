@@ -39,8 +39,12 @@ def upload_scanned_image(request):
 def upload_uploaded_image(request):
     image_path = request.data.get("image_path")
     user_id = request.data.get("user_id")
+
+    print("🟢 Upload received:", image_path, user_id)  # Debug line
+
     result = mongo_logic.save_uploaded_image(image_path, user_id)
     return Response(result)
+
 
 @api_view(["GET"])
 def unprocessed_images(request):

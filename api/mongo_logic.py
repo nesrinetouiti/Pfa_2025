@@ -18,8 +18,10 @@ def save_scanned_image(image_path, user_id):
         "status": "pending",
         "timestamp": datetime.utcnow()
     }
-    classifications.insert_one(data)
+    result = classifications.insert_one(data)
+    data["_id"] = str(result.inserted_id)  # Convert ObjectId to string
     return data
+
 
 # Save an uploaded image to the database with 'pending' status
 def save_uploaded_image(image_path, user_id):
@@ -30,8 +32,10 @@ def save_uploaded_image(image_path, user_id):
         "status": "pending",
         "timestamp": datetime.utcnow()
     }
-    classifications.insert_one(data)
+    result = classifications.insert_one(data)
+    data["_id"] = str(result.inserted_id)
     return data
+
 
 # Retrieve all images that have not yet been classified
 def get_unprocessed_images():
