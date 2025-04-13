@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views  # ✅ import views properly
+from django.http import HttpResponse
+
 
 urlpatterns = [
     path('', views.home, name='home'),
